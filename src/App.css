@@ -1,21 +1,8 @@
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
-
-body {
-  background-color: #FFF8E1; /* Cream color from the design */
-}
-
-.navy-blue {
-  color: #002B44; /* Dark blue color for text */
-}
-
-.bg-cream {
-  background-color: #FFF8E1;
 }
 
 .logo {
