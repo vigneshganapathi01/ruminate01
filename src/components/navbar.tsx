@@ -11,10 +11,10 @@ export function Navbar({ isAuthenticated = false }: { isAuthenticated?: boolean 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Features', href: '#features' },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Use Cases', href: '#use-cases' },
-    { label: 'Pricing', href: '#pricing' },
+    { label: 'Features', href: '/features' },
+    { label: 'How It Works', href: '/how-it-works' },
+    { label: 'Use Cases', href: '/use-cases' },
+    { label: 'Pricing', href: '/pricing' },
   ];
 
   const authenticatedNavItems = [
