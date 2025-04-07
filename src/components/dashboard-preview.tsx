@@ -1,4 +1,3 @@
-
 import { InsightCard } from './insight-card';
 import { Button } from '@/components/ui/button';
 
@@ -11,9 +10,9 @@ export function DashboardPreview() {
       source: "linkedin",
       date: new Date('2023-11-12'),
       tags: [
-        { name: "remote work", color: "blue" },
-        { name: "productivity", color: "green" },
-        { name: "wellbeing", color: "purple" }
+        { name: "remote work", color: "blue" as const },
+        { name: "productivity", color: "green" as const },
+        { name: "wellbeing", color: "purple" as const }
       ]
     },
     {
@@ -22,9 +21,9 @@ export function DashboardPreview() {
       source: "book",
       date: new Date('2023-10-25'),
       tags: [
-        { name: "habits", color: "orange" },
-        { name: "self-improvement", color: "purple" },
-        { name: "psychology", color: "blue" }
+        { name: "habits", color: "orange" as const },
+        { name: "self-improvement", color: "purple" as const },
+        { name: "psychology", color: "blue" as const }
       ]
     },
     {
@@ -33,9 +32,9 @@ export function DashboardPreview() {
       source: "article",
       date: new Date('2023-12-05'),
       tags: [
-        { name: "AI", color: "red" },
-        { name: "content", color: "green" },
-        { name: "creativity", color: "purple" }
+        { name: "AI", color: "red" as const },
+        { name: "content", color: "green" as const },
+        { name: "creativity", color: "purple" as const }
       ]
     }
   ];

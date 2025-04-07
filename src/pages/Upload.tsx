@@ -1,5 +1,5 @@
-
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -37,7 +37,6 @@ const UploadPage = () => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle upload logic based on activeTab
     console.log("Submitted:", { 
       type: activeTab, 
       title, 
