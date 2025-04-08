@@ -3,28 +3,33 @@ import { Link } from 'react-router-dom';
 import { Logo } from './logo';
 import { ThemeToggle } from './theme-provider';
 import { Button } from '@/components/ui/button';
-import { PlusCircle, LogIn, Menu } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
+import { LogOut, Menu } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-export function Navbar({ isAuthenticated = false }: { isAuthenticated?: boolean }) {
+interface NavbarProps {
+  isAuthenticated?: boolean;
+}
+
+export function Navbar({ isAuthenticated }: NavbarProps = {}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  
+  // Use prop if provided, otherwise use auth context
+  const isLoggedIn = isAuthenticated !== undefined ? isAuthenticated : !!user;
 
   const navItems = [
     { label: 'Features', href: '/features' },
     { label: 'How It Works', href: '/how-it-works' },
     { label: 'Use Cases', href: '/use-cases' },
-    { label: 'Pricing', href: '/pricing' },
   ];
 
   const authenticatedNavItems = [
     { label: 'Dashboard', href: '/dashboard' },
-    { label: 'Library', href: '/library' },
-    { label: 'Visual Maps', href: '/maps' },
-    { label: 'Settings', href: '/settings' },
   ];
 
-  const items = isAuthenticated ? authenticatedNavItems : navItems;
+  const items = isLoggedIn ? authenticatedNavItems : navItems;
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -50,18 +55,20 @@ export function Navbar({ isAuthenticated = false }: { isAuthenticated?: boolean 
         <div className="flex items-center gap-2">
           <ThemeToggle />
           
-          {isAuthenticated ? (
-            <Button asChild size="sm" className="hidden md:flex">
-              <Link to="/upload">
-                <PlusCircle className="mr-2 h-4 w-4" />
-                New Insight
-              </Link>
+          {isLoggedIn ? (
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="hidden md:flex"
+              onClick={() => signOut()}
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              Logout
             </Button>
           ) : (
             <>
               <Button asChild variant="ghost" size="sm" className="hidden md:flex">
                 <Link to="/login">
-                  <LogIn className="mr-2 h-4 w-4" />
                   Login
                 </Link>
               </Button>
@@ -101,12 +108,17 @@ export function Navbar({ isAuthenticated = false }: { isAuthenticated?: boolean 
             </Link>
           ))}
           
-          {isAuthenticated ? (
-            <Button asChild size="sm">
-              <Link to="/upload" onClick={() => setMobileMenuOpen(false)}>
-                <PlusCircle className="mr-2 h-4 w-4" />
-                New Insight
-              </Link>
+          {isLoggedIn ? (
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => {
+                signOut();
+                setMobileMenuOpen(false);
+              }}
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              Logout
             </Button>
           ) : (
             <div className="grid grid-cols-2 gap-2">
