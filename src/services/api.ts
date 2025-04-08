@@ -39,9 +39,17 @@ export const insightService = {
     input: InsightInput, 
     output: InsightOutput
   ) => {
+    // Get the current user
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      throw new Error("User must be authenticated to save insights");
+    }
+
     const { data, error } = await supabase
       .from('insights')
       .insert({
+        user_id: user.id, // Add the user_id field
         title: input.title || "Untitled Insight",
         original_content: input.content,
         summary: output.summary,
