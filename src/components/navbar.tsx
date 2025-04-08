@@ -8,9 +8,16 @@ import { LogOut, Menu } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-export function Navbar() {
+interface NavbarProps {
+  isAuthenticated?: boolean;
+}
+
+export function Navbar({ isAuthenticated }: NavbarProps = {}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
+  
+  // Use prop if provided, otherwise use auth context
+  const isLoggedIn = isAuthenticated !== undefined ? isAuthenticated : !!user;
 
   const navItems = [
     { label: 'Features', href: '/features' },
@@ -22,7 +29,7 @@ export function Navbar() {
     { label: 'Dashboard', href: '/dashboard' },
   ];
 
-  const items = user ? authenticatedNavItems : navItems;
+  const items = isLoggedIn ? authenticatedNavItems : navItems;
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -48,7 +55,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           
-          {user ? (
+          {isLoggedIn ? (
             <Button 
               variant="ghost" 
               size="sm" 
@@ -101,7 +108,7 @@ export function Navbar() {
             </Link>
           ))}
           
-          {user ? (
+          {isLoggedIn ? (
             <Button 
               variant="ghost" 
               size="sm"

@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/context/AuthContext";
 import { Brain, FileText, Upload, ExternalLink, Download, Copy, SendHorizonal, Loader2, X } from "lucide-react";
-import { Toast, toast } from "@/hooks/use-toast";
+import { useToast, toast } from "@/hooks/use-toast";
 import { InsightInput, InsightOutput, insightService } from "@/services/api";
 import { Tag } from "@/components/tag";
 

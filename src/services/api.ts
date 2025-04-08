@@ -1,5 +1,6 @@
 
 import { supabase } from "@/integrations/supabase/client";
+import { Database } from "@/integrations/supabase/types";
 
 export type InsightInput = {
   title?: string;
@@ -38,19 +39,22 @@ export const insightService = {
     input: InsightInput, 
     output: InsightOutput
   ) => {
-    const { data, error } = await supabase.from("insights").insert({
-      title: input.title || "Untitled Insight",
-      original_content: input.content,
-      summary: output.summary,
-      insights: JSON.stringify(output.keyInsights),
-      visual_map_data: {
-        nodes: output.visualData.nodes,
-        edges: output.visualData.edges,
-        questions: output.questions,
-        connections: output.connections
-      },
-      tags: input.tags || []
-    }).select();
+    const { data, error } = await supabase
+      .from('insights')
+      .insert({
+        title: input.title || "Untitled Insight",
+        original_content: input.content,
+        summary: output.summary,
+        insights: JSON.stringify(output.keyInsights),
+        visual_map_data: {
+          nodes: output.visualData.nodes,
+          edges: output.visualData.edges,
+          questions: output.questions,
+          connections: output.connections
+        },
+        tags: input.tags || []
+      })
+      .select();
 
     if (error) {
       throw new Error(error.message);
@@ -61,7 +65,7 @@ export const insightService = {
 
   getUserInsights: async () => {
     const { data, error } = await supabase
-      .from("insights")
+      .from('insights')
       .select("*")
       .order("created_at", { ascending: false });
 
@@ -74,7 +78,7 @@ export const insightService = {
 
   getInsightById: async (id: string) => {
     const { data, error } = await supabase
-      .from("insights")
+      .from('insights')
       .select("*")
       .eq("id", id)
       .single();
@@ -88,7 +92,7 @@ export const insightService = {
 
   deleteInsight: async (id: string) => {
     const { error } = await supabase
-      .from("insights")
+      .from('insights')
       .delete()
       .eq("id", id);
 
