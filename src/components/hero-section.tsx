@@ -1,71 +1,85 @@
 
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { Brain, Sparkles, Share2 } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Brain, Sparkles, FileText } from "lucide-react";
 
-export function HeroSection() {
+export const HeroSection: React.FC = () => {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-32">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45%_30%_at_50%_40%,rgba(51,195,240,0.1),rgba(255,255,255,0))]" />
-      <div className="container flex flex-col items-center text-center">
-        <div className="flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-sm mb-8">
-          <Sparkles className="h-4 w-4 text-teal" />
-          <span className="text-muted-foreground">Now in public beta</span>
-        </div>
-        
-        <h1 className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6 animate-fade-in">
-          Reflect. Connect. Create.
-        </h1>
-        
-        <p className="max-w-2xl text-muted-foreground sm:text-xl mb-10 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-          Ruminate helps you collect insightful content, reflect deeply, and transform your thoughts into visual knowledge maps.
-        </p>
-        
-        <div className="flex flex-wrap items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          <Button asChild size="lg">
-            <Link to="/signup">
-              Try Demo
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link to="/signup">
-              Sign Up Free
-            </Link>
-          </Button>
-        </div>
-        
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl w-full animate-fade-in" style={{ animationDelay: "0.3s" }}>
-          <div className="flex flex-col items-center text-center p-4">
-            <div className="rounded-full bg-teal/10 p-3 mb-4">
-              <Brain className="h-6 w-6 text-teal" />
-            </div>
-            <h3 className="text-lg font-medium mb-2">Thoughtful Collection</h3>
-            <p className="text-muted-foreground text-sm">
-              Easily save content from any platform to build your personal knowledge repository.
+    <section className="py-24 px-4 bg-gradient-to-b from-background to-sand/30">
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex-1 text-left">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              Transform content into 
+              <span className="text-teal block">actionable insights</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl">
+              Ruminate uses AI to analyze your documents, articles, and notes, 
+              generating summaries, extracting key insights, and creating visual 
+              knowledge maps to enhance your understanding.
             </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button asChild size="lg" className="text-base">
+                <Link to="/dashboard">Try Demo</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="text-base">
+                <Link to="/login">Login</Link>
+              </Button>
+            </div>
+            
+            <div className="flex flex-wrap gap-8 mt-12">
+              <div className="flex items-center gap-2">
+                <Brain className="h-5 w-5 text-teal" />
+                <span className="text-sm">AI-powered analysis</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-teal" />
+                <span className="text-sm">Visual knowledge maps</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FileText className="h-5 w-5 text-teal" />
+                <span className="text-sm">Export to PDF</span>
+              </div>
+            </div>
           </div>
           
-          <div className="flex flex-col items-center text-center p-4">
-            <div className="rounded-full bg-teal/10 p-3 mb-4">
-              <Sparkles className="h-6 w-6 text-teal" />
+          <div className="flex-1 relative">
+            <div className="bg-card rounded-2xl shadow-xl border p-6 z-10 relative animate-scale-in">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-semibold">Document Analysis</h3>
+                <div className="bg-teal/20 text-teal px-2 py-1 rounded-full text-xs">
+                  AI Processing
+                </div>
+              </div>
+              <div className="space-y-2 mb-4">
+                <div className="h-2 bg-muted rounded w-full"></div>
+                <div className="h-2 bg-muted rounded w-3/4"></div>
+                <div className="h-2 bg-muted rounded w-5/6"></div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="border rounded-lg p-3 bg-background/50">
+                  <div className="text-xs text-muted-foreground">Summary</div>
+                  <div className="h-2 bg-muted rounded w-full mt-2"></div>
+                  <div className="h-2 bg-muted rounded w-2/3 mt-1"></div>
+                </div>
+                <div className="border rounded-lg p-3 bg-background/50">
+                  <div className="text-xs text-muted-foreground">Key Points</div>
+                  <div className="h-2 bg-muted rounded w-full mt-2"></div>
+                  <div className="h-2 bg-muted rounded w-3/4 mt-1"></div>
+                </div>
+              </div>
+              <div className="bg-midnight/5 dark:bg-white/5 rounded-lg h-32 flex items-center justify-center">
+                <div className="text-xs text-muted-foreground">Knowledge Map Visualization</div>
+              </div>
             </div>
-            <h3 className="text-lg font-medium mb-2">AI-Powered Insights</h3>
-            <p className="text-muted-foreground text-sm">
-              Automatically summarize, cluster, and visualize your content to discover new connections.
-            </p>
-          </div>
-          
-          <div className="flex flex-col items-center text-center p-4">
-            <div className="rounded-full bg-teal/10 p-3 mb-4">
-              <Share2 className="h-6 w-6 text-teal" />
-            </div>
-            <h3 className="text-lg font-medium mb-2">Seamless Sharing</h3>
-            <p className="text-muted-foreground text-sm">
-              Export your insights to PDF, Notion, or as visual maps to share with others.
-            </p>
+
+            <div className="absolute -top-6 -right-6 w-40 h-40 bg-teal/20 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-midnight/20 rounded-full blur-3xl -z-10"></div>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
