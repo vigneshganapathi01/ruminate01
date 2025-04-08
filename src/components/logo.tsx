@@ -2,9 +2,9 @@ import React from 'react';
 
 export function Logo({ className = "", size = "md" }: { className?: string, size?: "sm" | "md" | "lg" }) {
   const sizeClasses = {
-    sm: "h-8",
-    md: "h-10",
-    lg: "h-12",
+    sm: "h-16",
+    md: "h-16",
+    lg: "h-16",
   };
   
   return (
