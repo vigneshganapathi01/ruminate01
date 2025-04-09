@@ -12,7 +12,7 @@ interface NavbarProps {
   isAuthenticated?: boolean;
 }
 
-export function Navbar({ isAuthenticated }: NavbarProps = {}) {
+export function Navbar({ isAuthenticated }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
   
@@ -32,8 +32,8 @@ export function Navbar({ isAuthenticated }: NavbarProps = {}) {
   const items = isLoggedIn ? authenticatedNavItems : navItems;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="w-full py-4 bg-sand">
+      <div className="container flex items-center justify-between">
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2">
             <Logo size="sm" />
@@ -44,7 +44,7 @@ export function Navbar({ isAuthenticated }: NavbarProps = {}) {
               <Link
                 key={item.href}
                 to={item.href}
-                className="text-sm font-medium transition-colors hover:text-teal"
+                className="text-sm font-medium text-midnight transition-colors hover:text-teal"
               >
                 {item.label}
               </Link>
@@ -52,7 +52,7 @@ export function Navbar({ isAuthenticated }: NavbarProps = {}) {
           </nav>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           <ThemeToggle />
           
           {isLoggedIn ? (
@@ -67,12 +67,12 @@ export function Navbar({ isAuthenticated }: NavbarProps = {}) {
             </Button>
           ) : (
             <>
-              <Button asChild variant="ghost" size="sm" className="hidden md:flex">
+              <Button asChild variant="ghost" size="sm" className="hidden md:flex text-midnight">
                 <Link to="/login">
                   Login
                 </Link>
               </Button>
-              <Button asChild size="sm" className="hidden md:flex">
+              <Button asChild size="sm" className="hidden md:flex bg-teal text-midnight">
                 <Link to="/signup">
                   Sign Up Free
                 </Link>
@@ -127,7 +127,7 @@ export function Navbar({ isAuthenticated }: NavbarProps = {}) {
                   Login
                 </Link>
               </Button>
-              <Button asChild size="sm">
+              <Button asChild size="sm" className="bg-teal text-midnight">
                 <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
                   Sign Up Free
                 </Link>
